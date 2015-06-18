@@ -20,5 +20,5 @@ init(_args)->
 	Children=[ChildSpec,ChildSpec2,ChildSpec3],
 	{ok,{RestartPlan,Children}}.
 start()->
-	Pid=supervisor:start_link(master,asd),
-	supervisor:start_child(Pid,{ch5,{clock,start,[]},permanent,brutal_kill,worker,dynamic}).
+	{ok,Pid}=supervisor:start_link(master,asd),
+	supervisor:start_child(Pid,{ch5,{clock,start,[15,{0,0,0}]},permanent,brutal_kill,worker,dynamic}).
